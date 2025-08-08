@@ -4,7 +4,7 @@ N = len(A)
 
 for i in range(N-1):
     max_idx = i
-    for j in range(i+1,N):
+    for j in range(i + 1, N):
         if A[max_idx] < A[j]:
             max_idx = j
     A[max_idx], A[i] = A[i], A[max_idx]
@@ -36,12 +36,13 @@ print(A)
 # # 카운트 정렬
 A = [2,4,3,6,1,7,4,3,9]
 N = len(A)
-count = [0] * 10
+count = [0] * 10  # 배열 내 최대 정수 + 1
+
 
 for i in range(N):
     count[A[i]] += 1
 
-for i in range(1, len(count)):
+for i in range(1, len(count)): # 1부터 시작할 것!
     count[i] += count[i-1]
 
 arr = [0] * len(A)
