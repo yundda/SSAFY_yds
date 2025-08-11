@@ -78,4 +78,4 @@ for t in range(1, T + 1):
                 print(i,j)
                 cnt += 1
 
-    print(f'#{t} {cnt}') # 2
+    print(f'#{t} {cnt}')
