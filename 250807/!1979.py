@@ -1,37 +1,69 @@
 T = int(input())
-for t in range(1, T +1):
-    N, K = (map(int,input().split()))
-    arr = [list(map(int,input().split())) for _ in range(N)]
+for t in range(1, T + 1):
+    N, K = map(int, input().split())
+    arr = [list(map(int, input().split())) for _ in range(N)]
 
-    def check_three(a,i):
-        for p in range(K-1):
-            if a[i+p+1] == 0:
+    def check_three(a, i):
+        for p in range(K - 1):
+            if a[i + p + 1] == 0:
                 return False
         return True
 
     def check_row(a):
         cnt = 0
-        for i in range(N-K+1):
-            isFail = False
-            # print(a[i])
+        for i in range(N - K + 1):
             if a[i] == 1:
-                if check_three(a,i):      
-                    if (i == 0 or a[i-1] == 0) and (i == N-K or a[i+K] == 0):
+                if check_three(a, i):
+                    if (i == 0 or a[i - 1] == 0) and (i == N - K or a[i + K] == 0):
                         cnt += 1
-        return cnt    
+        return cnt
 
     cnt = 0
     for row in arr:
         cnt += check_row(row)
-    
-    # for j in range(N):
-    #     col_arr = [0]*N
-    #     for i in range(N):
-    #         col_arr[i] = arr[i][j]
-    #     cnt += check_row(col_arr)
 
     for j in range(N):
         col_arr = [arr[i][j] for i in range(N)]
         cnt += check_row(col_arr)
 
-    print(f'#{t} {cnt}')
+    print(f"#{t} {cnt}")
+
+    ###### 위 방법이 더 나음
+
+    T = int(input())
+for t in range(1, T + 1):
+    N, K = tuple(map(int, input().split()))
+    arr = [list(map(int, input().split())) for _ in range(N)]
+
+    def in_range(a, i):
+        if i == 0 and a[i + K] == 0:
+            return True
+        elif i + K == N and a[i - 1] == 0:
+            return True
+        elif a[i - 1] == 0 and a[i + K] == 0:
+            return True
+        else:
+            return False
+
+    def check(a):
+        cnt = 0
+        for i in range(N - K + 1):
+            if a[i] == 1:
+                if in_range(a, i):
+                    for p in range(1, K):
+                        if a[i + p] != 1:
+                            break
+                    else:
+                        cnt += 1
+        return cnt
+
+    cnt = 0
+    for i in range(N):
+        a = [arr[i][j] for j in range(N)]
+        cnt += check(a)
+
+    for j in range(N):
+        a = [arr[i][j] for i in range(N)]
+        cnt += check(a)
+
+    print(f"#{t} {cnt}")
