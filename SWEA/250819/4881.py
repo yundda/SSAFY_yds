@@ -3,6 +3,8 @@ for t in range(1, T + 1):
     N = int(input())
     arr = [list(map(int, input().split())) for _ in range(N)]
 
+    min_val = 10**3
+
     def f(i, s):
         global min_val
         if s > min_val:
