@@ -1,6 +1,6 @@
-#### 슬라이딩 윈도우 ####
+### 슬라이딩 윈도우 ####
 S, P = map(int, input().split())
-str = list(input())
+pstr = list(input())
 p_cnt = list(map(int, input().split()))
 
 must = {
@@ -26,7 +26,7 @@ def in_range(p_dic):
 
 
 for i in range(P):
-    p_dic[str[i]] += 1
+    p_dic[pstr[i]] += 1
 
 cnt = 0
 start = 0
@@ -34,20 +34,20 @@ end = P - 1
 while True:
     if in_range(p_dic):
         cnt += 1
-    p_dic[str[start]] -= 1
+    p_dic[pstr[start]] -= 1
     start += 1
 
     end += 1
     if end == S:
         break
-    p_dic[str[end]] += 1
+    p_dic[pstr[end]] += 1
 
 print(cnt)
 
 
 #### 슬라이딩 윈도우 ####
 S, P = map(int, input().split())
-str = list(input())
+pstr = list(input())
 p_cnt = list(map(int, input().split()))
 
 must = {
@@ -56,27 +56,36 @@ must = {
     "G": p_cnt[2],
     "T": p_cnt[3],
 }
+p_dic = {
+    "A": 0,
+    "C": 0,
+    "G": 0,
+    "T": 0,
+}
+
+cnt = 0
 
 
-def in_range(idx):
-    p_dic = {
-        "A": 0,
-        "C": 0,
-        "G": 0,
-        "T": 0,
-    }
-    for i in range(idx, P + idx):
-        p_dic[str[i]] += 1
+def in_range():
     for k in "ACGT":
         if p_dic[k] < must[k]:
             return False
     return True
 
 
-cnt = 0
+for i in range(P):
+    p_dic[pstr[i]] += 1
 
-for i in range(S - P + 1):
-    if in_range(i):
+if in_range():
+    cnt += 1
+
+for start in range(1, S - P + 1):
+    end = start + P - 1
+
+    p_dic[pstr[start - 1]] -= 1
+    p_dic[pstr[end]] += 1
+
+    if in_range():
         cnt += 1
 
 print(cnt)
