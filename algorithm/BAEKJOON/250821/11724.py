@@ -1,6 +1,9 @@
+import sys
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
+
 N, M = map(int, input().split())
 A = [[] for _ in range(N + 1)]
-
 
 for _ in range(M):
     u, v = map(int, input().split())
