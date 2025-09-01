@@ -36,12 +36,25 @@ for _ in range(N):
 	A[n].append(l)
 	A[n].append(r)
 	
-	
-
-
-
 preorder(0)
 print()
 inorder(0)
 print()
 postorder(0)
+
+# dictionary로 가능
+def pre(node):
+	if node == '.':
+		return
+	print(node, end = "")
+	pre(A[node][0])
+	pre(A[node][1])
+
+A = {}
+for _ in range(N):
+	n,l,r = input().split()
+	A[n] = (l,r)
+
+pre('A')
+
+
