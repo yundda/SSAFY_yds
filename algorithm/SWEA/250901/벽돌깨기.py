@@ -42,8 +42,8 @@ for t in range(1,T+1):
                 if A[i][j] != 0:
                     bomb(i,j,A[i][j])
         
-        if ans < cnt:
-            ans = cnt
+        # if ans < cnt:
+        #     ans = cnt
 
 
 
