@@ -1,6 +1,6 @@
 A = [1,3,5,2]
 N = len(A)
-for i in range(1<<N): # 1 << N = 16 
+for i in range(1<<N): # 1 << N = 2^N = 16 
     a = []
     s = 0
     for idx in range(N):

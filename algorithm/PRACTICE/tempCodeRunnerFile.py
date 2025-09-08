@@ -1,2 +1,5 @@
-    # if n > 3 and cnt < 2:
+    
+    # if cnt == len(Friend):
+    #     print(f'result:{result}')
     #     return
+    
