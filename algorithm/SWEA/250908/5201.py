@@ -17,8 +17,6 @@ for tc in range(1,T+1):
         heapq.heappush(q,-w)
 
     for t in trucks:
-        
-            heapq.heappop(q)
         w = heapq.heappop(q)
         w = -w
         if t >= w:
