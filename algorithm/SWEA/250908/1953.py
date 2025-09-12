@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 sys.stdin = open('input.txt','r')
 
 T = int(input())
@@ -7,7 +8,6 @@ for t in range(1,T+1):
     hole = [list(map(int,input().split())) for _ in range(N)]
 
 
-    dic = { 0:'상', 1:'좌', 2: '하', 3: '우'}
     dr = (-1,0,1,0)
     dc = (0,-1,0,1)
 
@@ -23,26 +23,25 @@ for t in range(1,T+1):
             return True
         return False
 
-    def pos(nr,nc,nst,l):
-        global ans
-        if l == L:
-            return
+    q = deque()
+    q.append((R,C))
+    route = [[0] * M for _ in range(N)]
+    route[R][C] = 1
 
-        for k in structure_type[nst]:
+    ans = 1
+    while q:
+        nr, nc = q.popleft()
+        if route[nr][nc] == L:
+            break
+        for k in structure_type[hole[nr][nc]]:
             r = nr + dr[k]
             c = nc + dc[k]
             if in_range(r,c):
                 st = hole[r][c]
-                if not visited[r][c] and st != 0 and is_connect((k+2)%4,st):
-                    visited[r][c] = True
+                if route[r][c] == 0 and st != 0 and is_connect((k+2)%4,st):
+                    q.append((r,c))
+                    route[r][c] = route[nr][nc] + 1
                     ans += 1
-                    pos(r,c,st,l+1)
 
-        
 
-    ans = 1
-    visited[R][C] = True
-    pos(R,C,hole[R][C],1)
-
-    
     print(f'#{t} {ans}')
