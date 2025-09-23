@@ -4,8 +4,8 @@ sys.stdin = open("input.txt", "r")
 from heapq import heappop, heappush
 
 def dijkstra(start_node):
-    pq = [(0, start_node)]  # (누적거`리, 노드번호)
-    dists = [INF] * V       # 각 정점까지릐 최단거리를 저장할 리스트
+    pq = [(0, start_node)]  # (누적거리, 노드번호)
+    dists = [INF] * V       # 각 정점까지의 최단거리를 저장할 리스트
     dists[start_node] = 0   # 시작노드 최단거리는 0
 
     while pq:
