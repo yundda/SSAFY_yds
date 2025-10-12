@@ -1,0 +1,31 @@
+python -m venv venv
+source venv/Scripts/activate
+pip install -r requirements.txt 
+python manage.py runserver
+
+# model.py 초안으로 최종 설계도(0001_init~~~.py) 생성
+python mangage.py makemigration
+# 최종 설계도 DB 반영 = python을 sql로 번역 후 DB로
+python manage.py migrate
+
+# 관리자 계정 생성 명령어
+python manage.py createsuperser
+
+# --> admin.py 수정 필수 admin.site.register(테이블명)
+
+### django의 ORM으로 db랑 소통하기
+# django shell 켜기
+python manage.py shell
+    # 방법 1. 빈 객체(인스턴스) 생성 후, 할당
+        # article = Article()
+        # article.title = 'first'
+        # article.content = 'django!'
+    # 방법 2. 초기 값과 함께 객체 생성
+        # article = Article(title = 'second', content = 'django!')
+    # create() 메서드로 한 번에 생성
+
+# db에 저장
+article.save()
+
+# id로 조회 말고 pk 사용 권장
+article.pk

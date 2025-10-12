@@ -21,10 +21,12 @@ edges = []
 for _ in range(E):
     s,e,w = map(int,input().split())
     edges.append([w,s,e])
+    # edges.append([s,e,w])
 
 uf = [i for i in range(V + 1)]
 
 edges.sort()
+# edges.sort(key = lambda x:x[2])
 
 def find(x):
     if uf[x] == x:
